@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assembly Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="card">
+            <!-- TOPBAR-->
+             <div class="topbar">
+                <div class="row">
+                    <span style="display: inline-flex;align-items: center;gap: 8px;">
+                            <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="#cfd2dc" stroke-width="1.5"/></svg>
+                            <strong>Assembly Studio</strong>
+                    </span>
+                    <span class="badge">Beta</span>
+                </div>
+                <div class="row">
+                    <select name="" id="archsel" class="select">
+                        <option value="x86_64">x86_64(NASM)</option>
+                        <option value="arm64">ARM64(GNU)</option>
+                        <option value="riscv64">RISC-V 64</option>
+                    </select>
+                    <button class="btn" id="btnDeBug">Depurador</button>
+                    <button class="btn primary" id="btnRum">Montar &amp; Rodar</button>
+                </div>
+             </div>
+
+             <!-- Panels-->
+             <div class="panels">
+                <!-- left | explore-->
+                 <section class="panel left">
+                    <div class="expl-head">
+                        <span>Explore</span>
+                        <div class="row">
+                            <button class="btn" id="btnNew" title="Novo arquivo">+ Novo</button>
+                        </div>
+                    </div>
+                    <div class="expl-list" id="explList"></div>
+                 </section>
+
+                 <div class="handle" data-handle="left-mid" title="Arrante para redimencionar"></div>
+
+             </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
