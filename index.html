@@ -44,6 +44,69 @@
 
                  <div class="handle" data-handle="left-mid" title="Arrante para redimencionar"></div>
 
+                 <!--Middle/editor + console -->
+                 <section class="panel mid">
+                    <div class="ed-head">
+                        <div class="row">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 12h10M4 19H16" stroke="#cfd2dc" stroke-width="1.5"/></svg>
+                            <span id="fileTitle" style="font-weight: 600">—</span>
+                        </div>
+                        <div class="row">
+                            <button class="btn" id="btnSave">Salvar</button>
+                            <button class="btn primary" id="btnAssemble">Montar</button>
+                        </div>
+                    </div>
+
+                    <div class="editor" id="editor">
+                        <div class="gutter" id="gutter"></div>
+                        <textarea name="code" id="code" spellcheck="false"></textarea>
+                    </div>
+
+                    <div class="bottom console">
+                        <div class="tabs">
+                            <button class="tab active" data-tab="problems">Problemas</button>
+                            <button class="tab" data-tab="output">Saída</button>
+                            <button class="tab" data-tab="listing">Listing</button>
+                        </div>
+
+                        <div class="tab-panels">
+                            <div class="pad" id="tab-problems"><pre class="mono muted">Nenhum probelma encontrado.</pre></div>
+
+                            <div class="pad" id="tab-output" hidden><pre class="mono">(Execução simulada)</pre></div>
+                            <div class="pad" id="tab-listing" hidden><pre class="mono">(Vazio)</pre></div>
+                        </div>
+                    </div>
+                 </section>
+
+                 <div class="handle" data-handle="mid-hight" title="Arraste para redimencionar"></div>
+
+                 <!--right/Inspetor-->
+                 <section class="panel right">
+                    <div class="row" style="justify-content: space-between;padding: 0 6px 6px 6px">
+                        <div class="row muted" style="gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="#cfd2dc" stroke-width="1.5"/></svg>Inspector</div>
+                        <button>Configuração</button>
+                    </div>
+
+                    <div class="tabs">
+                        <button class="tab active" data-tab="regs">Resgistradores</button>
+                        <button class="tab active" data-tab="em">Memórias</button>
+                        <button class="tab active" data-tab="stack">Pilha</button>
+                    </div>
+
+                    <div class="tab-panels" id="ins-panels">
+                        <div id="tab-regs">
+                            <div class="grid-reg" id="regsGrid"></div>
+                        </div>
+                        <div id="tab-mem">
+                            <div class="pad"><pre class="mono muted">0000: 48 31 C0 48 89 C7 E8 ...</pre></div>
+                        </div>
+                        <div id="tab-stack">
+                            <div class="pad"><pre class="mono muted">[RSP]   -> 000000000000FF00
+[RSP+8]    0000000000000000</pre></div>
+                        </div>
+                    </div>
+                    <div class="pad hint" style="padding-top: 6px">Target FS: <code>/Workspace</code>/tmp</div>
+                 </section>
              </div>
         </div>
     </div>
