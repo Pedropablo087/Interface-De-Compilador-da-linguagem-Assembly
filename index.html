@@ -1,117 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assembly Studio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assembly Studio — HTML/JS puro</title>
+<link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
-    <div class="app">
-        <div class="card">
-            <!-- TOPBAR-->
-             <div class="topbar">
-                <div class="row">
-                    <span style="display: inline-flex;align-items: center;gap: 8px;">
-                            <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="#cfd2dc" stroke-width="1.5"/></svg>
-                            <strong>Assembly Studio</strong>
-                    </span>
-                    <span class="badge">Beta</span>
-                </div>
-                <div class="row">
-                    <select name="" id="archsel" class="select">
-                        <option value="x86_64">x86_64(NASM)</option>
-                        <option value="arm64">ARM64(GNU)</option>
-                        <option value="riscv64">RISC-V 64</option>
-                    </select>
-                    <button class="btn" id="btnDeBug">Depurador</button>
-                    <button class="btn primary" id="btnRum">Montar &amp; Rodar</button>
-                </div>
-             </div>
-
-             <!-- Panels-->
-             <div class="panels">
-                <!-- left | explore-->
-                 <section class="panel left">
-                    <div class="expl-head">
-                        <span>Explore</span>
-                        <div class="row">
-                            <button class="btn" id="btnNew" title="Novo arquivo">+ Novo</button>
-                        </div>
-                    </div>
-                    <div class="expl-list" id="explList"></div>
-                 </section>
-
-                 <div class="handle" data-handle="left-mid" title="Arrante para redimencionar"></div>
-
-                 <!--Middle/editor + console -->
-                 <section class="panel mid">
-                    <div class="ed-head">
-                        <div class="row">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 12h10M4 19H16" stroke="#cfd2dc" stroke-width="1.5"/></svg>
-                            <span id="fileTitle" style="font-weight: 600">—</span>
-                        </div>
-                        <div class="row">
-                            <button class="btn" id="btnSave">Salvar</button>
-                            <button class="btn primary" id="btnAssemble">Montar</button>
-                        </div>
-                    </div>
-
-                    <div class="editor" id="editor">
-                        <div class="gutter" id="gutter"></div>
-                        <textarea name="code" id="code" spellcheck="false"></textarea>
-                    </div>
-
-                    <div class="bottom console">
-                        <div class="tabs">
-                            <button class="tab active" data-tab="problems">Problemas</button>
-                            <button class="tab" data-tab="output">Saída</button>
-                            <button class="tab" data-tab="listing">Listing</button>
-                        </div>
-
-                        <div class="tab-panels">
-                            <div class="pad" id="tab-problems"><pre class="mono muted">Nenhum probelma encontrado.</pre></div>
-
-                            <div class="pad" id="tab-output" hidden><pre class="mono">(Execução simulada)</pre></div>
-                            <div class="pad" id="tab-listing" hidden><pre class="mono">(Vazio)</pre></div>
-                        </div>
-                    </div>
-                 </section>
-
-                 <div class="handle" data-handle="mid-hight" title="Arraste para redimencionar"></div>
-
-                 <!--right/Inspetor-->
-                 <section class="panel right">
-                    <div class="row" style="justify-content: space-between;padding: 0 6px 6px 6px">
-                        <div class="row muted" style="gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="#cfd2dc" stroke-width="1.5"/></svg>Inspector</div>
-                        <button>Configuração</button>
-                    </div>
-
-                    <div class="tabs">
-                        <button class="tab active" data-tab="regs">Resgistradores</button>
-                        <button class="tab active" data-tab="em">Memórias</button>
-                        <button class="tab active" data-tab="stack">Pilha</button>
-                    </div>
-
-                    <div class="tab-panels" id="ins-panels">
-                        <div id="tab-regs">
-                            <div class="grid-reg" id="regsGrid"></div>
-                        </div>
-                        <div id="tab-mem">
-                            <div class="pad"><pre class="mono muted">0000: 48 31 C0 48 89 C7 E8 ...</pre></div>
-                        </div>
-                        <div id="tab-stack">
-                            <div class="pad"><pre class="mono muted">[RSP]   -> 000000000000FF00
-[RSP+8]    0000000000000000</pre></div>
-                        </div>
-                    </div>
-                    <div class="pad hint" style="padding-top: 6px">Target FS: <code>/Workspace</code>/tmp</div>
-                 </section>
-             </div>
+  <div class="app">
+    <div class="card">
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="row">
+          <span style="display:inline-flex;align-items:center;gap:8px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="#cfd2dc" stroke-width="1.5"/></svg>
+            <strong>Assembly Studio</strong>
+          </span>
+          <span class="badge">beta</span>
         </div>
+        <div class="row">
+          <select id="archSel" class="select">
+            <option value="x86_64">x86_64 (NASM)</option>
+            <option value="arm64">ARM64 (GNU as)</option>
+            <option value="riscv64">RISC-V 64</option>
+          </select>
+          <button class="btn" id="btnDebug">Depurar</button>
+          <button class="btn primary" id="btnRun">Montar &amp; Rodar</button>
+        </div>
+      </div>
+
+      <!-- Panels -->
+      <div class="panels">
+        <!-- Left / Explorer -->
+        <section class="panel left">
+          <div class="expl-head">
+            <span>Explorer</span>
+            <div class="row">
+              <button class="btn" id="btnNew" title="Novo arquivo">+ Novo</button>
+            </div>
+          </div>
+          <div class="expl-list" id="explList"></div>
+        </section>
+
+        <div class="handle" data-handle="left-mid" title="Arraste para redimensionar"></div>
+
+        <!-- Middle / Editor + Console -->
+        <section class="panel mid">
+          <div class="ed-head">
+            <div class="row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 12h10M4 19h16" stroke="#cfd2dc" stroke-width="1.5"/></svg>
+              <span id="fileTitle" style="font-weight:600">—</span>
+            </div>
+            <div class="row">
+              <button class="btn" id="btnSave">Salvar</button>
+              <button class="btn primary" id="btnAssemble">Montar</button>
+            </div>
+          </div>
+
+          <div class="editor" id="editor">
+            <div class="gutter" id="gutter"></div>
+            <textarea class="code" id="code" spellcheck="false"></textarea>
+          </div>
+
+          <div class="bottom console">
+            <div class="tabs">
+              <button class="tab active" data-tab="problems">Problemas</button>
+              <button class="tab" data-tab="output">Saída</button>
+              <button class="tab" data-tab="listing">Listing</button>
+            </div>
+            <div class="tab-panels">
+              <div class="pad" id="tab-problems"><pre class="mono muted">Nenhum problema encontrado.</pre></div>
+              <div class="pad" id="tab-output" hidden><pre class="mono">(execução simulada)</pre></div>
+              <div class="pad" id="tab-listing" hidden><pre class="mono">(vazio)</pre></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="handle" data-handle="mid-right" title="Arraste para redimensionar"></div>
+
+        <!-- Right / Inspector -->
+        <section class="panel right">
+          <div class="row" style="justify-content:space-between;padding:0 6px 6px 6px">
+            <div class="row muted" style="gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="#cfd2dc" stroke-width="1.5"/></svg>Inspector</div>
+            <button class="btn" style="height:28px;padding:0 8px;font-size:12px">Config</button>
+          </div>
+
+          <div class="tabs">
+            <button class="tab active" data-tab="regs">Registradores</button>
+            <button class="tab" data-tab="mem">Memória</button>
+            <button class="tab" data-tab="stack">Pilha</button>
+          </div>
+          <div class="tab-panels" id="insp-panels">
+            <div id="tab-regs">
+              <div class="grid-reg" id="regsGrid"></div>
+            </div>
+            <div id="tab-mem" hidden>
+              <div class="pad"><pre class="mono muted">0000: 48 31 C0 48 89 C7 E8 ...</pre></div>
+            </div>
+            <div id="tab-stack" hidden>
+              <div class="pad"><pre class="mono muted">[RSP]   -> 000000000000FF00
+[RSP+8]    0000000000000000</pre></div>
+            </div>
+          </div>
+          <div class="pad hint" style="padding-top:6px">Target FS: <code>/workspace</code> • Tmp: <code>/tmp</code></div>
+        </section>
+      </div>
     </div>
+  </div>
 
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
